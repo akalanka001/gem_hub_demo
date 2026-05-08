@@ -7,7 +7,7 @@ import 'package:job_market/core/enums/gem_status.dart';
 import 'package:job_market/data/models/gem_market/gem_model.dart';
 import 'package:job_market/features/gem_market/viewmodel/gem_marketplace_viewmodel.dart';
 import 'gem_marketplace_widgets.dart';
-// import 'gem_market_add_entry.dart';
+import 'gem_add_entry.dart';
 
 // ─── Category model ────────────────────────────────────────────────────────────
 class _Category {
@@ -445,7 +445,9 @@ class _GemMarketPlaceScreenState extends ConsumerState<GemMarketPlaceScreen> {
           color: isDark ? const Color(0xFF1F2937) : _T.card,
           borderRadius: BorderRadius.circular(28),
           border: Border.all(
-            color: isDark ? const Color(0xFF374151) : Colors.black.withOpacity(0.03),
+            color: isDark
+                ? const Color(0xFF374151)
+                : Colors.black.withOpacity(0.03),
             width: 1,
           ),
           boxShadow: [
@@ -607,10 +609,10 @@ class _GemMarketPlaceScreenState extends ConsumerState<GemMarketPlaceScreen> {
         child: InkWell(
           borderRadius: BorderRadius.circular(28),
           onTap: () {
-            // Navigator.push(
-            //    context,
-            //    MaterialPageRoute(builder: (_) => AddGemScreen()),
-            //  );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AddGemScreen()),
+            );
           },
           child: const Icon(Icons.add_rounded, color: Colors.white, size: 28),
         ),
@@ -632,8 +634,6 @@ class _GemMarketPlaceScreenState extends ConsumerState<GemMarketPlaceScreen> {
 Widget _buildPlaceholder() {
   return Container(
     color: _T.accentLight,
-    child: const Center(
-      child: Icon(Icons.diamond, color: _T.accent, size: 40),
-    ),
+    child: const Center(child: Icon(Icons.diamond, color: _T.accent, size: 40)),
   );
 }

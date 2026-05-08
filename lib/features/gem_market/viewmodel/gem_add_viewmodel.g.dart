@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'post_job_viewmodel.dart';
+part of 'gem_add_viewmodel.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,28 +9,28 @@ part of 'post_job_viewmodel.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(PostJobViewModel)
-final postJobViewModelProvider = PostJobViewModelProvider._();
+@ProviderFor(GemAddViewModel)
+final gemAddViewModelProvider = GemAddViewModelProvider._();
 
-final class PostJobViewModelProvider
-    extends $NotifierProvider<PostJobViewModel, bool> {
-  PostJobViewModelProvider._()
+final class GemAddViewModelProvider
+    extends $NotifierProvider<GemAddViewModel, bool> {
+  GemAddViewModelProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'postJobViewModelProvider',
+        name: r'gemAddViewModelProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$postJobViewModelHash();
+  String debugGetCreateSourceHash() => _$gemAddViewModelHash();
 
   @$internal
   @override
-  PostJobViewModel create() => PostJobViewModel();
+  GemAddViewModel create() => GemAddViewModel();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(bool value) {
@@ -41,9 +41,9 @@ final class PostJobViewModelProvider
   }
 }
 
-String _$postJobViewModelHash() => r'b479edebc45d4c3b3b2907017270ed0a3d41591b';
+String _$gemAddViewModelHash() => r'08cc47592df036d82f61d7983d58938648d5c400';
 
-abstract class _$PostJobViewModel extends $Notifier<bool> {
+abstract class _$GemAddViewModel extends $Notifier<bool> {
   bool build();
   @$mustCallSuper
   @override
