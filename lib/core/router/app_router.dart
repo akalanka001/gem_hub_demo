@@ -5,6 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 // Screens
 import 'package:job_market/features/navigation/view/main_navigation.dart';
 import 'package:job_market/features/marketplace/view/job_market.dart';
+import 'package:job_market/features/jobs/view/PostNewJob/post_new_job.dart';
 import 'package:job_market/features/gem_market/view/gem_market.dart';
 import 'package:job_market/features/auth/view/admin_screen.dart';
 import 'package:job_market/features/auth/view/login_screen.dart';
@@ -57,6 +58,11 @@ GoRouter router(Ref ref) {
             builder: (context, state) => const JobMarketplaceScreen(),
           ),
           GoRoute(
+            path: '/jobs/new',
+            name: 'post_job',
+            builder: (context, state) => const PostJobScreen(),
+          ),
+          GoRoute(
             path: '/gems',
             name: 'gems',
             builder: (context, state) => const GemMarketPlaceScreen(),
@@ -71,13 +77,12 @@ GoRouter router(Ref ref) {
             name: 'inventory',
             builder: (context, state) => const InventoryScreen(),
           ),
-        
+
           GoRoute(
             path: '/home',
             name: 'home',
             builder: (context, state) => const HomeScreen(),
           ),
-        
         ],
       ),
     ],

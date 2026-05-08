@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:job_market/data/datasources/local/database_helper.dart';
+import 'package:job_market/features/auth/provider/session_provider.dart';
 import 'package:job_market/features/jobs/view/cv_viewer_screen.dart';
 
-class EmployerApplicationsScreen extends StatefulWidget {
+class EmployerApplicationsScreen extends ConsumerStatefulWidget {
   const EmployerApplicationsScreen({Key? key}) : super(key: key);
 
   @override
-  State<EmployerApplicationsScreen> createState() =>
+  ConsumerState<EmployerApplicationsScreen> createState() =>
       _EmployerApplicationsScreenState();
 }
 
-class _EmployerApplicationsScreenState extends State<EmployerApplicationsScreen> {
+class _EmployerApplicationsScreenState
+    extends ConsumerState<EmployerApplicationsScreen> {
   final Color primaryGreen = const Color(0xFF10C971);
 
   // 👇 Log wela inna kenage ID eka aran eyata adala applications gannawa
   Future<List<Map<String, dynamic>>> _loadApplications() async {
-    final prefs = await SharedPreferences.getInstance();
-    String currentUserId = prefs.getString('logged_in_user_id') ?? '';
+    final sessionAsync = ref.read(sessionProvider);
+    final currentUser = sessionAsync.value;
+    final String currentUserId =
+        currentUser?.profile?.username ?? currentUser?.supabaseUser?.id ?? '';
+
+    if (currentUserId.isEmpty) {
+      return [];
+    }
+
     return await DatabaseHelper().getReceivedApplications(currentUserId);
   }
 
@@ -209,7 +219,7 @@ class _EmployerApplicationsScreenState extends State<EmployerApplicationsScreen>
                             ),
                           ],
                         ),
-                        
+
                         // 👇 FIX KARAPU BUTTON EKA METHANA THIYENAWA
                         ElevatedButton.icon(
                           onPressed: () {
@@ -218,8 +228,12 @@ class _EmployerApplicationsScreenState extends State<EmployerApplicationsScreen>
                               MaterialPageRoute(
                                 builder: (context) => CvViewerScreen(
                                   // CV file path eka DB eke thiyena widihata gannawa
-                                  cvPath: app['cv_file_path'] ?? app['cv_path'] ?? '', 
-                                  applicantName: app['applicant_name'] ?? 'Applicant',
+                                  cvPath:
+                                      app['cv_file_path'] ??
+                                      app['cv_path'] ??
+                                      '',
+                                  applicantName:
+                                      app['applicant_name'] ?? 'Applicant',
                                 ),
                               ),
                             );

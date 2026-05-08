@@ -1,5 +1,6 @@
 import 'package:job_market/data/models/job_market/job_model.dart';
 import 'package:job_market/data/repositories/job_market/job_repository.dart';
+import 'package:job_market/features/marketplace/viewmodels/marketplace_viewmodel.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'post_job_viewmodel.g.dart';
@@ -12,8 +13,15 @@ class PostJobViewModel extends _$PostJobViewModel {
   }
 
   Future<bool> publishJob(Job job) async {
-    final repository = ref.read(jobRepositoryProvider);
-    repository.insertJob(job);
-    return true;
+    try {
+      final repository = ref.read(jobRepositoryProvider);
+      await repository.insertJob(job);
+
+      // Refresh the marketplace jobs list after adding a new job
+      ref.invalidate(marketplaceViewModelProvider);
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 }
