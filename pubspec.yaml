@@ -26,6 +26,7 @@ dependencies:
   flutter_dotenv: ^6.0.1
   dio: ^5.9.2
   image_picker: ^1.2.2
+  pretty_dio_logger: ^1.4.0
 
 dev_dependencies:
   flutter_test:

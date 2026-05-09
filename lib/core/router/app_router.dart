@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:job_market/features/navigation/view/main_navigation.dart';
 import 'package:job_market/features/marketplace/view/job_market.dart';
 import 'package:job_market/features/jobs/view/PostNewJob/post_new_job.dart';
-import 'package:job_market/features/gem_market/view/gem_market.dart';
+import 'package:job_market/features/gem_market/view/gem_market_screen.dart';
 import 'package:job_market/features/auth/view/admin_screen.dart';
 import 'package:job_market/features/auth/view/login_screen.dart';
 import 'package:job_market/features/auth/view/sign_up_screen.dart';
