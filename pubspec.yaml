@@ -10,7 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sqflite: ^2.3.0
+  sqflite_sqlcipher: ^3.0.1 # Latest for 2026
+  flutter_secure_storage: ^9.0.0
   path: ^1.8.3
   cupertino_icons: ^1.0.8
   http: ^1.1.0

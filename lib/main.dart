@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:job_market/core/constants/app_colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_market/data/datasources/local/database_helper.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -17,6 +18,13 @@ void main() async {
     url: dotenv.env['SUPABASE_URL']!,
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
+
+  final dbHelper = DatabaseHelper();
+  
+  await dbHelper.database;
+
+  // Cheking if the database header is encrypted or not
+  await dbHelper.hexDumpHeader();
 
   runApp(const ProviderScope(child: MyApp()));
 }
