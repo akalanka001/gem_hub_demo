@@ -9,6 +9,7 @@ import 'package:job_market/features/reports/presentation/views/reports_screen.da
 import 'package:job_market/shared/widgets/app_header.dart';
 // Remove the old manual mock and use the generated one
 import 'package:job_market/features/home/provider/profile_view_model.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -23,9 +24,9 @@ class HomeScreen extends ConsumerWidget {
 
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bgColor = isDark
-        ? const Color(0xFF0F172A)
-        : const Color(0xFFF8FAFC);
-    final Color textColor = isDark ? Colors.white : const Color(0xFF1E293B);
+        ? AppColors.darkBackgroundAlt
+        : AppColors.lightBackgroundSoft;
+    final Color textColor = isDark ? Colors.white : AppColors.textDarkAlt;
 
     return profileState.when(
       loading: () => const Scaffold(
@@ -112,13 +113,13 @@ class HomeScreen extends ConsumerWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         gradient: const LinearGradient(
-          colors: [Color(0xFFFDB913), Color(0xFFD97706)],
+          colors: [AppColors.primaryYellow, AppColors.accentOrange],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFFDB913).withOpacity(0.3),
+            color: AppColors.primaryYellow.withOpacity(0.3),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -312,9 +313,9 @@ class HomeScreen extends ConsumerWidget {
               // TODO: Implement actual profit/loss gradient logic later
               // Dummy logic: random greens for profit, light greys for neutral
               Color tileColor = [
-                const Color(0xFF10C971),
-                const Color(0xFFD1FAE5),
-                const Color(0xFFA7F3D0),
+                AppColors.primaryGreen,
+                AppColors.mintLight,
+                AppColors.successMint,
               ][index % 3];
               return Container(
                 decoration: BoxDecoration(
@@ -345,8 +346,8 @@ class HomeScreen extends ConsumerWidget {
             Icons.add_circle,
             "Add Gem",
             "Inventory Input",
-            const Color(0xFFE0E7FF),
-            const Color(0xFF3730A3),
+            AppColors.blueSoft,
+            AppColors.accentBlue,
             () {
               Navigator.push(
                 context,
@@ -361,8 +362,8 @@ class HomeScreen extends ConsumerWidget {
             Icons.business_center,
             "Post Job",
             "Hire Talent",
-            const Color(0xFFD1FAE5),
-            const Color(0xFF065F46),
+            AppColors.mintLight,
+            AppColors.darkGreen,
             () {
               Navigator.push(
                 context,
@@ -421,7 +422,7 @@ class HomeScreen extends ConsumerWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E293B) : Colors.white,
+        color: isDark ? AppColors.textDarkAlt : Colors.white,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(

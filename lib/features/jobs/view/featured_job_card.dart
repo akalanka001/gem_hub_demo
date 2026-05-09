@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 class FeaturedJobCard extends StatelessWidget {
   final String title;
@@ -9,14 +10,14 @@ class FeaturedJobCard extends StatelessWidget {
   final Color logoColor;
 
   const FeaturedJobCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.company,
     required this.salary,
     required this.timePosted,
     required this.isPremium,
     required this.logoColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class FeaturedJobCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: isDark
-            ? const Color(0xFF1F2937)
+            ? AppColors.darkSurface
             : Colors.white, // Dynamic Background
         borderRadius: BorderRadius.circular(24),
         boxShadow: isDark
@@ -53,7 +54,7 @@ class FeaturedJobCard extends StatelessWidget {
                 height: 48,
                 decoration: BoxDecoration(
                   color: isDark
-                      ? const Color(0xFF374151)
+                      ? AppColors.darkSurfaceAlt
                       : Colors.grey[100], // Logo Background
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -68,13 +69,13 @@ class FeaturedJobCard extends StatelessWidget {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF0F3B2C),
+                    color: AppColors.darkGreenDeep,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Text(
                     'Just Now Listed',
                     style: TextStyle(
-                      color: Color(0xFF10C971),
+                      color: AppColors.primaryGreen,
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
                     ),
@@ -88,7 +89,7 @@ class FeaturedJobCard extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF111827),
+              color: isDark ? Colors.white : AppColors.darkBackground,
             ),
           ), // Text Color
           const SizedBox(height: 4),
@@ -108,7 +109,7 @@ class FeaturedJobCard extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF10C971),
+                  color: AppColors.primaryGreen,
                 ),
               ),
               Text(

@@ -5,6 +5,7 @@ import 'package:job_market/core/enums/user_role.dart';
 import 'package:job_market/features/auth/provider/session_provider.dart'; // Updated import
 import 'package:job_market/shared/widgets/app_header.dart';
 import 'package:job_market/shared/widgets/bottom_navigation_bar.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 class MainNavigation extends ConsumerWidget {
   final Widget child;
@@ -37,8 +38,8 @@ class MainNavigation extends ConsumerWidget {
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final backgroundColor = isDark
-        ? const Color(0xFF111827)
-        : const Color(0xFFF5F7FA);
+        ? AppColors.darkBackground
+        : AppColors.lightBackgroundAlt;
     final isAdmin = user?.profile?.role == UserRole.ADMIN;
 
     return Scaffold(

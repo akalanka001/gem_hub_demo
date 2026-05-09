@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:job_market/features/gem_market/viewmodel/gem_add_viewmodel.dart';
 import 'package:job_market/features/auth/provider/session_provider.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 class AddGemScreen extends ConsumerStatefulWidget {
   const AddGemScreen({super.key});
@@ -79,7 +80,7 @@ class _AddGemScreenState extends ConsumerState<AddGemScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Gem listed successfully and is pending approval.'),
-          backgroundColor: Color(0xFF10C971),
+          backgroundColor: AppColors.primaryGreen,
         ),
       );
       context.go('/gems');
@@ -107,29 +108,29 @@ class _AddGemScreenState extends ConsumerState<AddGemScreen> {
         controller: controller,
         keyboardType: keyboardType,
         maxLines: maxLines,
-        style: const TextStyle(color: Color(0xFF0F172A)),
+        style: const TextStyle(color: AppColors.darkBackgroundAlt),
         decoration: InputDecoration(
           labelText: label,
-          labelStyle: const TextStyle(color: Color(0xFF64748B), fontSize: 13),
+          labelStyle: const TextStyle(color: AppColors.greyTextMuted, fontSize: 13),
           hintText: hint,
-          hintStyle: const TextStyle(color: Color(0xFF94A3B8)),
+          hintStyle: const TextStyle(color: AppColors.greyTextLight),
           filled: true,
-          fillColor: const Color(0xFFF8FAFC),
+          fillColor: AppColors.lightBackgroundSoft,
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 18,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Color(0xFFCBD5E1)),
+            borderSide: const BorderSide(color: AppColors.lightBorderAlt),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Color(0xFFCBD5E1)),
+            borderSide: const BorderSide(color: AppColors.lightBorderAlt),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Color(0xFF10C971), width: 2),
+            borderSide: const BorderSide(color: AppColors.primaryGreen, width: 2),
           ),
         ),
         validator: optional
@@ -149,7 +150,7 @@ class _AddGemScreenState extends ConsumerState<AddGemScreen> {
         style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
-          color: Color(0xFF0F172A),
+          color: AppColors.darkBackgroundAlt,
         ),
       ),
     );
@@ -158,9 +159,9 @@ class _AddGemScreenState extends ConsumerState<AddGemScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F4F6),
+      backgroundColor: AppColors.lightBackgroundGrey,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF10C971),
+        backgroundColor: AppColors.primaryGreen,
         elevation: 0,
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -196,7 +197,7 @@ class _AddGemScreenState extends ConsumerState<AddGemScreen> {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF111827),
+                      color: AppColors.darkBackground,
                     ),
                   ),
                   SizedBox(height: 8),
@@ -204,7 +205,7 @@ class _AddGemScreenState extends ConsumerState<AddGemScreen> {
                     'Fill in the details below. The gem will be submitted as pending approval.',
                     style: TextStyle(
                       fontSize: 14,
-                      color: Color(0xFF475569),
+                      color: AppColors.greyTextSecondary,
                       height: 1.4,
                     ),
                   ),
@@ -302,8 +303,8 @@ class _AddGemScreenState extends ConsumerState<AddGemScreen> {
                       child: ElevatedButton(
                         onPressed: _isPublishing ? null : _handlePublish,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF10C971),
-                          disabledBackgroundColor: const Color(0xFF86EFAC),
+                          backgroundColor: AppColors.primaryGreen,
+                          disabledBackgroundColor: AppColors.successLight,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),

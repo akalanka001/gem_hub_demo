@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 import 'package:job_market/data/datasources/local/database_helper.dart';
 import 'package:job_market/features/auth/provider/session_provider.dart';
 import 'package:job_market/features/jobs/view/cv_viewer_screen.dart';
 
 class EmployerApplicationsScreen extends ConsumerStatefulWidget {
-  const EmployerApplicationsScreen({Key? key}) : super(key: key);
+  const EmployerApplicationsScreen({super.key});
 
   @override
   ConsumerState<EmployerApplicationsScreen> createState() =>
@@ -15,8 +16,6 @@ class EmployerApplicationsScreen extends ConsumerStatefulWidget {
 
 class _EmployerApplicationsScreenState
     extends ConsumerState<EmployerApplicationsScreen> {
-  final Color primaryGreen = const Color(0xFF10C971);
-
   // 👇 Log wela inna kenage ID eka aran eyata adala applications gannawa
   Future<List<Map<String, dynamic>>> _loadApplications() async {
     final sessionAsync = ref.read(sessionProvider);
@@ -34,9 +33,11 @@ class _EmployerApplicationsScreenState
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
-    Color bgColor = isDark ? const Color(0xFF111827) : const Color(0xFFF5F7FA);
-    Color textColor = isDark ? Colors.white : const Color(0xFF111827);
-    Color cardColor = isDark ? const Color(0xFF1F2937) : Colors.white;
+    Color bgColor = isDark
+        ? AppColors.darkBackground
+        : AppColors.lightBackgroundAlt;
+    Color textColor = isDark ? Colors.white : AppColors.darkBackground;
+    Color cardColor = isDark ? AppColors.darkSurface : Colors.white;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -62,14 +63,14 @@ class _EmployerApplicationsScreenState
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: CircularProgressIndicator(color: primaryGreen),
+              child: CircularProgressIndicator(color: AppColors.primaryGreen),
             );
           }
           if (snapshot.hasError) {
             return const Center(
               child: Text(
                 "Error loading applications",
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: AppColors.dangerRed),
               ),
             );
           }
@@ -115,7 +116,7 @@ class _EmployerApplicationsScreenState
                         Text(
                           app['job_title'] ?? 'Unknown Job',
                           style: TextStyle(
-                            color: primaryGreen,
+                            color: AppColors.primaryGreen,
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                           ),
@@ -126,13 +127,13 @@ class _EmployerApplicationsScreenState
                             vertical: 4,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.orange.withOpacity(0.1),
+                            color: AppColors.accentOrange.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
                             app['status']?.toUpperCase() ?? 'PENDING',
                             style: const TextStyle(
-                              color: Colors.orange,
+                              color: AppColors.accentOrange,
                               fontSize: 10,
                               fontWeight: FontWeight.bold,
                             ),
@@ -147,7 +148,7 @@ class _EmployerApplicationsScreenState
                       children: [
                         CircleAvatar(
                           backgroundColor: isDark
-                              ? const Color(0xFF374151)
+                              ? AppColors.darkSurface
                               : Colors.grey[100],
                           child: Icon(
                             Icons.person,
@@ -248,7 +249,7 @@ class _EmployerApplicationsScreenState
                             style: TextStyle(color: Colors.white),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryGreen,
+                            backgroundColor: AppColors.primaryGreen,
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),

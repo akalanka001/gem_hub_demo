@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -35,12 +36,12 @@ class MyApp extends ConsumerWidget {
 
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: const Color(0xFF10C971),
+        primaryColor: AppColors.primaryGreen,
         useMaterial3: true,
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        primaryColor: const Color(0xFF10C971),
+        primaryColor: AppColors.primaryGreen,
         useMaterial3: true,
       ),
       themeMode: ThemeMode.system,

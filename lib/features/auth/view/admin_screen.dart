@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_market/features/jobs/viewmodels/job_viewmodel.dart';
 import 'package:job_market/features/auth/viewmodel/auth_viewmodel.dart';
@@ -11,11 +12,7 @@ class AdminReviewScreen extends ConsumerStatefulWidget {
 }
 
 class _AdminReviewScreenState extends ConsumerState<AdminReviewScreen> {
-  final Color primaryGreen = const Color(0xFF10C971);
-  final Color primaryYellow = const Color(0xFFFDB913);
-  final Color bgColor = const Color(0xFFF8F9FA);
-  final Color greyText = const Color(0xFF6B7280);
-
+        
   void _showLogoutDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -36,12 +33,12 @@ class _AdminReviewScreenState extends ConsumerState<AdminReviewScreen> {
               onPressed: () => Navigator.pop(dialogContext),
               child: Text(
                 'Cancel',
-                style: TextStyle(color: greyText, fontWeight: FontWeight.bold),
+                style: TextStyle(color: AppColors.greyText, fontWeight: FontWeight.bold),
               ),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFEF4444),
+                backgroundColor: AppColors.dangerRed,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -78,7 +75,7 @@ class _AdminReviewScreenState extends ConsumerState<AdminReviewScreen> {
     final pendingJobsState = ref.watch(pendingJobsViewModelProvider);
 
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: AppColors.lightBackground,
       // We removed the generic AppHeader here to allow this screen
       // to have its own unique Admin navigation/header logic.
       body: SafeArea(
@@ -95,7 +92,7 @@ class _AdminReviewScreenState extends ConsumerState<AdminReviewScreen> {
             Expanded(
               child: pendingJobsState.when(
                 loading: () => const Center(
-                  child: CircularProgressIndicator(color: Color(0xFFFDB913)),
+                  child: CircularProgressIndicator(color: AppColors.primaryYellow),
                 ),
                 error: (error, stack) => Center(child: Text('Error: $error')),
                 data: (pendingJobs) {
@@ -139,7 +136,7 @@ class _AdminReviewScreenState extends ConsumerState<AdminReviewScreen> {
           Container(
             padding: const EdgeInsets.all(3),
             decoration: BoxDecoration(
-              color: primaryYellow,
+              color: AppColors.primaryYellow,
               shape: BoxShape.circle,
             ),
             child: const CircleAvatar(
@@ -167,14 +164,14 @@ class _AdminReviewScreenState extends ConsumerState<AdminReviewScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Row(
         children: [
-          Icon(icon, size: 20, color: greyText),
+          Icon(icon, size: 20, color: AppColors.greyText),
           const SizedBox(width: 8),
           Text(
             title,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: greyText,
+              color: AppColors.greyText,
             ),
           ),
         ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 import 'package:job_market/data/models/job_market/job_model.dart';
 import 'package:job_market/data/datasources/local/database_helper.dart';
@@ -16,8 +17,6 @@ class PostJobScreen extends ConsumerStatefulWidget {
 }
 
 class _PostJobScreenState extends ConsumerState<PostJobScreen> {
-  final Color primaryYellow = const Color(0xFFFDB913);
-
   final TextEditingController _companyNameCtrl = TextEditingController();
   final TextEditingController _jobTitleCtrl = TextEditingController();
   final TextEditingController _descriptionCtrl = TextEditingController();
@@ -69,9 +68,9 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
         _companyNameCtrl.text.isEmpty ||
         _selectedLocation.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please fill all required fields'),
-          backgroundColor: Colors.red,
+        SnackBar(
+          content: const Text('Please fill all required fields'),
+          backgroundColor: AppColors.dangerRed,
         ),
       );
       return;
@@ -79,9 +78,9 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
     if (_selectedCategory == 'Other (Add Custom)' &&
         _customCategoryCtrl.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please enter your custom job category'),
-          backgroundColor: Colors.red,
+        SnackBar(
+          content: const Text('Please enter your custom job category'),
+          backgroundColor: AppColors.dangerRed,
         ),
       );
       return;
@@ -92,9 +91,9 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
 
     if (currentUser?.supabaseUser == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('You must be logged in to publish a job'),
-          backgroundColor: Colors.red,
+        SnackBar(
+          content: const Text('You must be logged in to publish a job'),
+          backgroundColor: AppColors.dangerRed,
         ),
       );
       context.go('/login');
@@ -120,7 +119,7 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
       companyInfo: companyInfoFormatted,
       salary: salaryFormatted,
       tags: finalTags,
-      logoColor: 0xFF10C971,
+      logoColor: AppColors.primaryGreen.value,
       status: 'approved',
     );
 
@@ -137,11 +136,11 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
       );
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
+        SnackBar(
+          content: const Text(
             'Job submitted successfully! It is now visible in the marketplace.',
           ),
-          backgroundColor: Color(0xFF10C971),
+          backgroundColor: AppColors.primaryGreen,
         ),
       );
       context.go('/jobs');
@@ -151,12 +150,14 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
-    Color bgColor = isDark ? const Color(0xFF111827) : const Color(0xFFF8F9FA);
-    Color textColor = isDark ? Colors.white : const Color(0xFF111827);
-    Color fieldBg = isDark ? const Color(0xFF1F2937) : Colors.white;
+    Color bgColor = isDark
+        ? AppColors.darkBackground
+        : AppColors.lightBackground;
+    Color textColor = isDark ? Colors.white : AppColors.darkBackground;
+    Color fieldBg = isDark ? AppColors.darkSurface : Colors.white;
     Color dividerColor = isDark
-        ? const Color(0xFF374151)
-        : const Color(0xFFE5E7EB);
+        ?  AppColors.darkSurfaceAlt
+        : AppColors.lightBorder;
     final divider = Padding(
       padding: const EdgeInsets.symmetric(vertical: 24),
       child: Divider(color: dividerColor, thickness: 1),
@@ -174,7 +175,7 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.close, color: primaryYellow, size: 28),
+          icon: Icon(Icons.close, color: AppColors.primaryYellow, size: 28),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
@@ -202,7 +203,7 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
                       PostJobSectionHeader(
                         icon: Icons.domain,
                         title: 'COMPANY DETAILS',
-                        primaryYellow: primaryYellow,
+                        primaryYellow: AppColors.primaryYellow,
                       ),
                       const SizedBox(height: 16),
                       PostJobTextField(
@@ -214,7 +215,7 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
                       PostJobSectionHeader(
                         icon: Icons.work_outline,
                         title: 'JOB INFORMATION',
-                        primaryYellow: primaryYellow,
+                        primaryYellow: AppColors.primaryYellow,
                       ),
                       const SizedBox(height: 16),
                       PostJobTextField(
@@ -251,7 +252,7 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(16),
                             borderSide: BorderSide(
-                              color: primaryYellow,
+                              color: AppColors.primaryYellow,
                               width: 2,
                             ),
                           ),
@@ -284,7 +285,7 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
                       ),
                       const SizedBox(height: 20),
                       PostJobSkills(
-                        primaryYellow: primaryYellow,
+                        primaryYellow: AppColors.primaryYellow,
                         selectedSkills: _skills,
                         onAddSkill: _addSkill,
                         onRemoveSkill: _removeSkill,
@@ -293,7 +294,7 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
                       PostJobSectionHeader(
                         icon: Icons.money,
                         title: 'LOGISTICS',
-                        primaryYellow: primaryYellow,
+                        primaryYellow: AppColors.primaryYellow,
                       ),
                       const SizedBox(height: 16),
                       Row(
@@ -331,7 +332,7 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
               PostJobBottomAction(
                 onPublish: isLoading ? () {} : _publishJob,
                 bgColor: bgColor,
-                primaryYellow: primaryYellow,
+                primaryYellow: AppColors.primaryYellow,
               ),
             ],
           ),
@@ -340,7 +341,7 @@ class _PostJobScreenState extends ConsumerState<PostJobScreen> {
             Container(
               color: Colors.black.withOpacity(0.3),
               child: const Center(
-                child: CircularProgressIndicator(color: Color(0xFF10C971)),
+                child: CircularProgressIndicator(color: AppColors.primaryGreen),
               ),
             ),
         ],

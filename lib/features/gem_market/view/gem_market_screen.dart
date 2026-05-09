@@ -8,6 +8,7 @@ import 'package:job_market/data/models/gem_market/gem_model.dart';
 import 'package:job_market/features/gem_market/viewmodel/gem_marketplace_viewmodel.dart';
 import 'gem_marketplace_widgets.dart';
 import 'gem_add_entry.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 // ─── Category model ────────────────────────────────────────────────────────────
 class _Category {
@@ -23,54 +24,54 @@ const _categories = [
     GemType.allGems,
     'All Gems',
     Icons.auto_awesome_rounded,
-    Color(0xFF10C971),
+    AppColors.primaryGreen,
   ),
-  _Category(GemType.sapphire, 'Sapphire', Icons.circle, Color(0xFF10B981)),
-  _Category(GemType.ruby, 'Ruby', Icons.favorite_rounded, Color(0xFFEF4444)),
-  _Category(GemType.emerald, 'Emerald', Icons.eco_rounded, Color(0xFF10B981)),
+  _Category(GemType.sapphire, 'Sapphire', Icons.circle, AppColors.accentGreen),
+  _Category(GemType.ruby, 'Ruby', Icons.favorite_rounded, AppColors.dangerRed),
+  _Category(GemType.emerald, 'Emerald', Icons.eco_rounded, AppColors.accentGreen),
   _Category(
     GemType.diamond,
     'Diamond',
     Icons.diamond_rounded,
-    Color(0xFF8B5CF6),
+    AppColors.accentPurple,
   ),
   _Category(
     GemType.alexandrite,
     'Alexandrite',
     Icons.auto_fix_high_rounded,
-    Color(0xFF8B5CF6),
+    AppColors.accentPurple,
   ),
   _Category(
     GemType.topaz,
     'Topaz',
     Icons.brightness_high_rounded,
-    Color(0xFFF59E0B),
+    AppColors.gold,
   ),
-  _Category(GemType.spinel, 'Spinel', Icons.grain_rounded, Color(0xFFEC4899)),
+  _Category(GemType.spinel, 'Spinel', Icons.grain_rounded, AppColors.accentPink),
   _Category(
     GemType.tourmaline,
     'Tourmaline',
     Icons.palette_rounded,
-    Color(0xFFF43F5E),
+    AppColors.accentRed,
   ),
   _Category(
     GemType.other,
     'Other',
     Icons.more_horiz_rounded,
-    Color(0xFF6B7280),
+    AppColors.greyText,
   ),
 ];
 
 // ─── Light theme design tokens ────────────────────────────────────────────────
 class _T {
-  static const bg = Color(0xFFF5F7FA);
+  static const bg = AppColors.lightBackgroundAlt;
   static const card = Colors.white;
-  static const border = Color(0xFFE5E7EB);
-  static const accent = Color(0xFF10C971);
-  static const accentLight = Color(0xFFDCFCE7);
-  static const gold = Color(0xFFF59E0B);
-  static const text = Color(0xFF111827);
-  static const subText = Color(0xFF6B7280);
+  static const border = AppColors.lightBorder;
+  static const accent = AppColors.primaryGreen;
+  static const accentLight = AppColors.accentGreenLight;
+  static const gold = AppColors.gold;
+  static const text = AppColors.darkBackground;
+  static const subText = AppColors.greyText;
 }
 
 // ─── Main Screen ──────────────────────────────────────────────────────────────
@@ -104,7 +105,7 @@ class _GemMarketPlaceScreenState extends ConsumerState<GemMarketPlaceScreen> {
     );
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF111827) : _T.bg,
+      backgroundColor: isDark ? AppColors.darkBackground : _T.bg,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -159,10 +160,10 @@ class _GemMarketPlaceScreenState extends ConsumerState<GemMarketPlaceScreen> {
               height: 50,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF1F2937) : _T.card,
+                color: isDark ? AppColors.darkSurface : _T.card,
                 borderRadius: BorderRadius.circular(25),
                 border: Border.all(
-                  color: isDark ? const Color(0xFF374151) : _T.border,
+                  color: isDark ? AppColors.darkSurfaceAlt : _T.border,
                 ),
                 boxShadow: isDark
                     ? []
@@ -214,10 +215,10 @@ class _GemMarketPlaceScreenState extends ConsumerState<GemMarketPlaceScreen> {
             width: 50,
             height: 50,
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF1F2937) : _T.card,
+              color: isDark ? AppColors.darkSurface : _T.card,
               borderRadius: BorderRadius.circular(14),
               border: Border.all(
-                color: isDark ? const Color(0xFF374151) : _T.border,
+                color: isDark ? AppColors.darkSurfaceAlt : _T.border,
               ),
               boxShadow: isDark
                   ? []
@@ -267,12 +268,12 @@ class _GemMarketPlaceScreenState extends ConsumerState<GemMarketPlaceScreen> {
                   decoration: BoxDecoration(
                     color: isSelected
                         ? _T.accent
-                        : (isDark ? const Color(0xFF1F2937) : _T.card),
+                        : (isDark ? AppColors.darkSurface : _T.card),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       color: isSelected
                           ? _T.accent
-                          : (isDark ? const Color(0xFF374151) : _T.border),
+                          : (isDark ? AppColors.darkSurfaceAlt : _T.border),
                     ),
                     boxShadow: isSelected
                         ? [
@@ -349,7 +350,7 @@ class _GemMarketPlaceScreenState extends ConsumerState<GemMarketPlaceScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF1F2937) : _T.accentLight,
+                color: isDark ? AppColors.darkSurface : _T.accentLight,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
@@ -428,11 +429,11 @@ class _GemMarketPlaceScreenState extends ConsumerState<GemMarketPlaceScreen> {
     // Status colors
     Color statusColor;
     if (gem.status == GemStatus.APPROVED) {
-      statusColor = const Color(0xFF10B981);
+      statusColor = AppColors.accentGreen;
     } else if (gem.status == GemStatus.REJECTED) {
-      statusColor = const Color(0xFFEF4444);
+      statusColor = AppColors.dangerRed;
     } else {
-      statusColor = const Color(0xFFF59E0B);
+      statusColor = AppColors.gold;
     }
 
     return GestureDetector(
@@ -442,11 +443,11 @@ class _GemMarketPlaceScreenState extends ConsumerState<GemMarketPlaceScreen> {
       ).push(MaterialPageRoute(builder: (_) => ListingDetailScreen(gem: gem))),
       child: Container(
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF1F2937) : _T.card,
+          color: isDark ? AppColors.darkSurface : _T.card,
           borderRadius: BorderRadius.circular(28),
           border: Border.all(
             color: isDark
-                ? const Color(0xFF374151)
+                ? AppColors.darkSurfaceAlt
                 : Colors.black.withOpacity(0.03),
             width: 1,
           ),
@@ -528,7 +529,7 @@ class _GemMarketPlaceScreenState extends ConsumerState<GemMarketPlaceScreen> {
                           ),
                           child: const Icon(
                             Icons.favorite_border_rounded,
-                            color: Color(0xFF111827),
+                            color: AppColors.darkBackground,
                             size: 20,
                           ),
                         ),

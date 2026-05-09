@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 import 'package:job_market/features/auth/viewmodel/auth_viewmodel.dart';
 
@@ -15,8 +16,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final TextEditingController _emailCtrl = TextEditingController();
   final TextEditingController _passwordCtrl = TextEditingController();
 
-  final Color primaryGreen = const Color(0xFF10C971);
-  bool _obscurePassword = true;
+    bool _obscurePassword = true;
 
   @override
   void initState() {
@@ -59,7 +59,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final isLoading = authState is AsyncLoading;
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF111827) : Colors.white,
+      backgroundColor: isDark ? AppColors.darkBackground : Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -67,7 +67,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.diamond_outlined, size: 80, color: primaryGreen),
+                Icon(Icons.diamond_outlined, size: 80, color: AppColors.primaryGreen),
                 const SizedBox(height: 24),
 
                 Text(
@@ -137,7 +137,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   child: ElevatedButton(
                     onPressed: isLoading ? null : _login,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryGreen,
+                      backgroundColor: AppColors.primaryGreen,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -179,7 +179,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       child: Text(
                         'Sign Up',
                         style: TextStyle(
-                          color: primaryGreen,
+                          color: AppColors.primaryGreen,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

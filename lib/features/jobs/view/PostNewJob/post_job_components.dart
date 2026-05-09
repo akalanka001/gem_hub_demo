@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class PostJobHeroSection extends StatelessWidget {
   final Color textColor;
-  const PostJobHeroSection({Key? key, required this.textColor})
-    : super(key: key);
+  const PostJobHeroSection({super.key, required this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +81,9 @@ class PostJobTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
-    Color bgColor = isDark ? const Color(0xFF1F2937) : Colors.white;
-    Color borderColor = isDark ? const Color(0xFF374151) : Colors.grey[300]!;
-    Color labelColor = isDark ? Colors.grey[300]! : const Color(0xFF1F2937);
+    Color bgColor = isDark ? AppColors.darkSurface : Colors.white;
+    Color borderColor = isDark ? AppColors.darkSurfaceAlt : AppColors.lightGrey!;
+    Color labelColor = isDark ? AppColors.lightGrey : AppColors.darkSurface;
     Color inputColor = isDark ? Colors.white : Colors.black;
 
     return Column(
@@ -145,7 +145,7 @@ class PostJobSkills extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController skillController = TextEditingController();
     bool isDark = Theme.of(context).brightness == Brightness.dark;
-    Color labelColor = isDark ? Colors.grey[300]! : const Color(0xFF1F2937);
+    Color labelColor = isDark ? AppColors.lightGrey! : AppColors.darkSurface;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,10 +162,10 @@ class PostJobSkills extends StatelessWidget {
 
         Container(
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF1F2937) : Colors.white,
+            color: isDark ? AppColors.darkSurface : Colors.white,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: isDark ? const Color(0xFF374151) : Colors.grey[300]!,
+              color: isDark ? AppColors.darkSurfaceAlt : AppColors.lightGrey,
             ),
           ),
           child: TextField(
@@ -226,8 +226,8 @@ class PostJobSkills extends StatelessWidget {
         children: [
           Text(
             text,
-            style: const TextStyle(
-              color: Color(0xFFD97706),
+            style: TextStyle(
+              color: AppColors.accentOrange,
               fontWeight: FontWeight.w600,
               fontSize: 13,
             ),
@@ -235,7 +235,7 @@ class PostJobSkills extends StatelessWidget {
           const SizedBox(width: 8),
           GestureDetector(
             onTap: () => onRemoveSkill(index),
-            child: const Icon(Icons.close, size: 16, color: Color(0xFFD97706)),
+            child: Icon(Icons.close, size: 16, color: AppColors.accentOrange),
           ),
         ],
       ),
@@ -265,7 +265,7 @@ class PostJobBottomAction extends StatelessWidget {
         color: bgColor,
         border: Border(
           top: BorderSide(
-            color: isDark ? const Color(0xFF374151) : Colors.grey[200]!,
+            color: isDark ? AppColors.darkSurfaceAlt : Colors.grey[200]!,
           ),
         ),
       ),
@@ -348,8 +348,8 @@ class _PostJobLocationPickerState extends State<PostJobLocationPicker> {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
-    Color bgColor = isDark ? const Color(0xFF1F2937) : Colors.white;
-    Color borderColor = isDark ? const Color(0xFF374151) : Colors.grey[300]!;
+    Color bgColor = isDark ? AppColors.darkSurface : Colors.white;
+    Color borderColor = isDark ? AppColors.darkSurfaceAlt : AppColors.lightGrey!;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -359,7 +359,7 @@ class _PostJobLocationPickerState extends State<PostJobLocationPicker> {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w500,
-            color: isDark ? Colors.grey[300] : const Color(0xFF1F2937),
+            color: isDark ? AppColors.lightGrey : AppColors.darkSurface,
           ),
         ),
         const SizedBox(height: 8),
@@ -431,7 +431,7 @@ class _PostJobLocationPickerState extends State<PostJobLocationPicker> {
                             children: [
                               const Icon(
                                 Icons.location_on,
-                                color: Color(0xFF10C971),
+                                color: AppColors.primaryGreen,
                               ),
                               const SizedBox(width: 12),
                               Expanded(

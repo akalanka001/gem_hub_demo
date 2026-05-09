@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_market/features/auth/viewmodel/auth_viewmodel.dart';
 import 'package:go_router/go_router.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});
@@ -15,8 +16,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   final TextEditingController _passwordCtrl = TextEditingController();
   final TextEditingController _confirmPasswordCtrl = TextEditingController();
 
-  final Color primaryGreen = const Color(0xFF10C971);
-  bool _obscurePassword = true;
+    bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
   void _signUp() {
@@ -55,7 +55,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
     final isLoading = authState is AsyncLoading;
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF111827) : Colors.white,
+      backgroundColor: isDark ? AppColors.darkBackground : Colors.white,
       appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -140,7 +140,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 child: ElevatedButton(
                   onPressed: isLoading ? null : _signUp,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryGreen,
+                    backgroundColor: AppColors.primaryGreen,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -170,7 +170,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     child: Text(
                       'Login',
                       style: TextStyle(
-                        color: primaryGreen,
+                        color: AppColors.primaryGreen,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

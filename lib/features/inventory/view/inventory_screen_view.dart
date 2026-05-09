@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_market/data/models/inventory/gemstone_model.dart';
 import 'package:job_market/features/inventory/provider/inventory_provider.dart';
@@ -13,8 +14,7 @@ class InventoryScreen extends ConsumerStatefulWidget {
 }
 
 class _InventoryScreenState extends ConsumerState<InventoryScreen> {
-  final Color primaryBlue = const Color(0xFF10C971);
-  String _searchQuery = "";
+    String _searchQuery = "";
   String _selectedCategory = "All";
 
   final List<String> _categories = [
@@ -34,10 +34,10 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
 
     // 2. Define Dynamic Colors
     Color scaffoldBg = isDark
-        ? const Color(0xFF111827)
-        : const Color(0xFFF3F4F6);
-    Color cardBg = isDark ? const Color(0xFF1F2937) : Colors.white;
-    Color primaryTextColor = isDark ? Colors.white : const Color(0xFF111827);
+        ? AppColors.darkBackground
+        : AppColors.lightBackgroundGrey;
+    Color cardBg = isDark ? AppColors.darkSurface : Colors.white;
+    Color primaryTextColor = isDark ? Colors.white : AppColors.darkBackground;
     Color secondaryTextColor = isDark ? Colors.grey[400]! : Colors.grey[600]!;
 
     return inventoryAsync.when(
@@ -84,7 +84,7 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            backgroundColor: primaryBlue,
+            backgroundColor: AppColors.primaryGreen,
             child: const Icon(Icons.add, color: Colors.white, size: 30),
             onPressed: () => Navigator.push(
               context,
@@ -151,7 +151,7 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
               color: cardBg, // Use the parameter here
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Icon(Icons.tune, color: Color(0xFF374151)),
+            child: const Icon(Icons.tune, color: AppColors.darkSurfaceAlt),
           ),
         ],
       ),
@@ -171,8 +171,8 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
           hintText: "Search gemstones...",
           filled: true,
           fillColor: isDark
-              ? const Color(0xFF374151)
-              : const Color(0xFFE5E7EB), // Use it here
+              ? AppColors.darkSurfaceAlt
+              : AppColors.lightBorder, // Use it here
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide: BorderSide.none,
@@ -200,7 +200,7 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
               onSelected: (val) =>
                   setState(() => _selectedCategory = _categories[index]),
               // Use isDark to set unselected text/background colors if needed
-              backgroundColor: isDark ? const Color(0xFF1F2937) : Colors.white,
+              backgroundColor: isDark ? AppColors.darkSurface : Colors.white,
               labelStyle: TextStyle(
                 color: isSelected
                     ? Colors.white
@@ -379,7 +379,7 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF10C971),
+                          color: AppColors.primaryGreen,
                         ),
                       ),
                     ],
@@ -403,7 +403,7 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
             // ignore: deprecated_member_use
             ? Colors.red.withOpacity(0.9)
             // ignore: deprecated_member_use
-            : const Color(0xFF10C971).withOpacity(0.9),
+            : AppColors.primaryGreen.withOpacity(0.9),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
@@ -434,12 +434,12 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF374151) : const Color(0xFFF8FAFC),
+        color: isDark ? AppColors.darkSurfaceAlt : AppColors.lightBackgroundSoft,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         children: [
-          Icon(icon, size: 20, color: const Color(0xFF3B82F6)),
+          Icon(icon, size: 20, color: AppColors.primaryBlue),
           const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -486,9 +486,9 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
 
   void _showGemDetails(BuildContext context, GemstoneModel gem) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final textColor = isDark ? Colors.white : const Color(0xFF1E293B);
+    final textColor = isDark ? Colors.white : AppColors.textDarkAlt;
     final subTextColor = isDark ? Colors.grey[400] : Colors.grey[600];
-    final surfaceColor = isDark ? const Color(0xFF1F2937) : Colors.white;
+    final surfaceColor = isDark ? AppColors.darkSurface : Colors.white;
 
     showModalBottomSheet(
       context: context,
@@ -641,7 +641,7 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
                                 (gem.transportCost ?? 0) +
                                 (gem.otherProcessingCost ?? 0),
                             subTextColor,
-                            const Color(0xFF3B82F6),
+                            AppColors.primaryBlue,
                             isBold: true,
                           ),
                         ],
@@ -673,7 +673,7 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
                       height: 56,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF10C971),
+                          backgroundColor: AppColors.primaryGreen,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
@@ -703,13 +703,13 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: const Color(0xFF10C971).withOpacity(0.1),
+        color: AppColors.primaryGreen.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
         "Rs. ${price.toStringAsFixed(0)}",
         style: const TextStyle(
-          color: Color(0xFF10C971),
+          color: AppColors.primaryGreen,
           fontWeight: FontWeight.bold,
           fontSize: 18,
         ),
@@ -733,12 +733,12 @@ class _InventoryScreenState extends ConsumerState<InventoryScreen> {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF374151) : Colors.grey[100],
+        color: isDark ? AppColors.darkSurfaceAlt : Colors.grey[100],
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         children: [
-          Icon(icon, size: 20, color: const Color(0xFF3B82F6)),
+          Icon(icon, size: 20, color: AppColors.primaryBlue),
           const SizedBox(width: 8),
           Expanded(
             child: Column(

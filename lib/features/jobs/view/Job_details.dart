@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:go_router/go_router.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 import 'package:job_market/features/auth/provider/session_provider.dart';
 import 'package:job_market/features/auth/view/login_screen.dart';
 import 'package:job_market/data/datasources/local/database_helper.dart';
@@ -11,14 +12,13 @@ class JobDetailsScreen extends ConsumerWidget {
 
   const JobDetailsScreen({super.key, required this.job});
 
-  final Color primaryGreen = const Color(0xFF10C971);
-
+  
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
-    Color bgColor = isDark ? const Color(0xFF111827) : Colors.white;
-    Color textColor = isDark ? Colors.white : const Color(0xFF111827);
-    Color greyText = isDark ? Colors.grey[400]! : const Color(0xFF6B7280);
+    Color bgColor = isDark ? AppColors.darkBackground : Colors.white;
+    Color textColor = isDark ? Colors.white : AppColors.darkBackground;
+    Color greyText = isDark ? Colors.grey[400]! : AppColors.greyText;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -30,7 +30,7 @@ class JobDetailsScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(8.0),
           child: Container(
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF1F2937) : Colors.grey[100],
+              color: isDark ? AppColors.darkSurface : Colors.grey[100],
               shape: BoxShape.circle,
             ),
             child: IconButton(
@@ -52,7 +52,7 @@ class JobDetailsScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF1F2937) : Colors.grey[100],
+                color: isDark ? AppColors.darkSurface : Colors.grey[100],
                 shape: BoxShape.circle,
               ),
               child: IconButton(
@@ -101,10 +101,10 @@ class JobDetailsScreen extends ConsumerWidget {
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF1F2937) : Colors.white,
+              color: isDark ? AppColors.darkSurface : Colors.white,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: isDark ? const Color(0xFF374151) : Colors.grey[200]!,
+                color: isDark ? AppColors.darkSurfaceAlt : Colors.grey[200]!,
                 width: 2,
               ),
               boxShadow: isDark
@@ -148,12 +148,12 @@ class JobDetailsScreen extends ConsumerWidget {
                 companyName,
                 style: TextStyle(
                   fontSize: 16,
-                  color: primaryGreen,
+                  color: AppColors.primaryGreen,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(width: 6),
-              Icon(Icons.verified, color: primaryGreen, size: 18),
+              Icon(Icons.verified, color: AppColors.primaryGreen, size: 18),
             ],
           ),
           const SizedBox(height: 6),
@@ -177,8 +177,8 @@ class JobDetailsScreen extends ConsumerWidget {
         return _buildTag(
           Icons.check_circle_outline,
           tag.trim(),
-          isDark ? const Color(0xFF1F2937) : Colors.grey[100]!,
-          isDark ? Colors.grey[300]! : const Color(0xFF4B5563),
+          isDark ? AppColors.darkSurface : Colors.grey[100]!,
+          isDark ? Colors.grey[300]! : AppColors.greyTextDim,
         );
       }).toList(),
     );
@@ -240,10 +240,10 @@ class JobDetailsScreen extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1F2937) : Colors.white,
+        color: isDark ? AppColors.darkSurface : Colors.white,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: isDark ? const Color(0xFF374151) : Colors.grey[200]!,
+          color: isDark ? AppColors.darkSurfaceAlt : Colors.grey[200]!,
         ),
         boxShadow: isDark
             ? []
@@ -284,10 +284,10 @@ class JobDetailsScreen extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: primaryGreen.withOpacity(0.1),
+              color: AppColors.primaryGreen.withOpacity(0.1),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(Icons.payments_outlined, color: primaryGreen, size: 28),
+            child: Icon(Icons.payments_outlined, color: AppColors.primaryGreen, size: 28),
           ),
         ],
       ),
@@ -344,10 +344,10 @@ class JobDetailsScreen extends ConsumerWidget {
             margin: const EdgeInsets.only(top: 2),
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
-              color: primaryGreen.withOpacity(0.15),
+              color: AppColors.primaryGreen.withOpacity(0.15),
               shape: BoxShape.circle,
             ),
-            child: Icon(Icons.check, size: 14, color: primaryGreen),
+            child: Icon(Icons.check, size: 14, color: AppColors.primaryGreen),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -384,10 +384,10 @@ class JobDetailsScreen extends ConsumerWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF111827) : Colors.white,
+          color: isDark ? AppColors.darkBackground : Colors.white,
           border: Border(
             top: BorderSide(
-              color: isDark ? const Color(0xFF374151) : Colors.grey[200]!,
+              color: isDark ? AppColors.darkSurfaceAlt : Colors.grey[200]!,
             ),
           ),
         ),
@@ -397,7 +397,7 @@ class JobDetailsScreen extends ConsumerWidget {
               height: 56,
               width: 56,
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF1F2937) : Colors.grey[100],
+                color: isDark ? AppColors.darkSurface : Colors.grey[100],
                 borderRadius: BorderRadius.circular(16),
               ),
               child: IconButton(
@@ -432,7 +432,7 @@ class JobDetailsScreen extends ConsumerWidget {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryGreen,
+                    backgroundColor: AppColors.primaryGreen,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -489,8 +489,7 @@ class _ApplyJobFormState extends State<ApplyJobForm> {
   String? _cvFilePath;
   bool _isSubmitting = false;
 
-  final Color primaryGreen = const Color(0xFF10C971);
-
+  
   Future<void> _pickCV() async {
     try {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -548,7 +547,7 @@ class _ApplyJobFormState extends State<ApplyJobForm> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Application Submitted Successfully!'),
-          backgroundColor: Color(0xFF10C971),
+          backgroundColor: AppColors.primaryGreen,
         ),
       );
     }
@@ -557,10 +556,10 @@ class _ApplyJobFormState extends State<ApplyJobForm> {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
-    Color bgColor = isDark ? const Color(0xFF1F2937) : Colors.white;
+    Color bgColor = isDark ? AppColors.darkSurface : Colors.white;
     Color textColor = isDark ? Colors.white : Colors.black;
-    Color fieldBg = isDark ? const Color(0xFF111827) : Colors.white;
-    Color borderColor = isDark ? const Color(0xFF374151) : Colors.grey[400]!;
+    Color fieldBg = isDark ? AppColors.darkBackground : Colors.white;
+    Color borderColor = isDark ? AppColors.darkSurfaceAlt : Colors.grey[400]!;
 
     return Container(
       padding: EdgeInsets.only(
@@ -602,7 +601,7 @@ class _ApplyJobFormState extends State<ApplyJobForm> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: primaryGreen, width: 2),
+                  borderSide: BorderSide(color: AppColors.primaryGreen, width: 2),
                 ),
               ),
             ),
@@ -623,7 +622,7 @@ class _ApplyJobFormState extends State<ApplyJobForm> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: primaryGreen, width: 2),
+                  borderSide: BorderSide(color: AppColors.primaryGreen, width: 2),
                 ),
               ),
             ),
@@ -644,7 +643,7 @@ class _ApplyJobFormState extends State<ApplyJobForm> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: primaryGreen, width: 2),
+                  borderSide: BorderSide(color: AppColors.primaryGreen, width: 2),
                 ),
               ),
             ),
@@ -667,7 +666,7 @@ class _ApplyJobFormState extends State<ApplyJobForm> {
                   color: fieldBg,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: _cvFilePath != null ? primaryGreen : borderColor,
+                    color: _cvFilePath != null ? AppColors.primaryGreen : borderColor,
                   ),
                 ),
                 child: Row(
@@ -677,7 +676,7 @@ class _ApplyJobFormState extends State<ApplyJobForm> {
                           ? Icons.check_circle
                           : Icons.upload_file,
                       color: _cvFilePath != null
-                          ? primaryGreen
+                          ? AppColors.primaryGreen
                           : Colors.grey[500],
                     ),
                     const SizedBox(width: 12),
@@ -686,7 +685,7 @@ class _ApplyJobFormState extends State<ApplyJobForm> {
                         _cvFileName ?? 'Tap to select PDF or Word doc',
                         style: TextStyle(
                           color: _cvFilePath != null
-                              ? primaryGreen
+                              ? AppColors.primaryGreen
                               : Colors.grey[500],
                           fontWeight: FontWeight.w500,
                         ),
@@ -707,7 +706,7 @@ class _ApplyJobFormState extends State<ApplyJobForm> {
               child: ElevatedButton(
                 onPressed: _isSubmitting ? null : _submitForm,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryGreen,
+                  backgroundColor: AppColors.primaryGreen,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_market/features/auth/provider/session_provider.dart';
 import 'package:job_market/features/marketplace/view/notification_screen.dart';
 import 'package:job_market/features/jobs/view/PostNewJob/employer_applications_screen.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 class AppHeader extends ConsumerWidget {
   const AppHeader({super.key});
@@ -49,13 +50,13 @@ class AppHeader extends ConsumerWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: const Color(0xFFD1E9FF), // Light blue ring
+                    color: AppColors.blueLight, // Light blue ring
                     width: 2,
                   ),
                 ),
                 child: CircleAvatar(
                   radius: 20,
-                  backgroundColor: const Color(0xFFFFDAB9), // Peachy background
+                  backgroundColor: AppColors.peach, // Peachy background
                   backgroundImage: NetworkImage(avatarUrl),
                 ),
               ),
@@ -75,7 +76,7 @@ class AppHeader extends ConsumerWidget {
                         fontWeight: FontWeight.w700,
                         color: isDark
                             ? Colors.blueGrey[300]
-                            : const Color(0xFF64748B),
+                            : AppColors.greyTextMuted,
                       ),
                     ),
                     Text(
@@ -83,7 +84,7 @@ class AppHeader extends ConsumerWidget {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: isDark ? Colors.white : const Color(0xFF1E293B),
+                        color: isDark ? Colors.white : AppColors.textDarkAlt,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -131,7 +132,7 @@ class AppHeader extends ConsumerWidget {
       constraints: const BoxConstraints(),
       icon: Icon(
         icon,
-        color: isDark ? Colors.white70 : const Color(0xFF475569),
+        color: isDark ? Colors.white70 : AppColors.greyTextSecondary,
         size: 24,
       ),
     );
@@ -147,12 +148,12 @@ class AppHeader extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF1F2937) : const Color(0xFFF8FAFC),
+              color: isDark ? AppColors.darkSurface : AppColors.lightBackgroundSoft,
               shape: BoxShape.circle,
             ),
             child: Icon(
               Icons.notifications_none_rounded,
-              color: isDark ? Colors.white : const Color(0xFF1E293B),
+              color: isDark ? Colors.white : AppColors.textDarkAlt,
               size: 22,
             ),
           ),
@@ -164,10 +165,10 @@ class AppHeader extends ConsumerWidget {
               width: 8,
               height: 8,
               decoration: BoxDecoration(
-                color: const Color(0xFFEF4444),
+                color: AppColors.dangerRed,
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: isDark ? const Color(0xFF111827) : Colors.white,
+                  color: isDark ? AppColors.darkBackground : Colors.white,
                   width: 1.5,
                 ),
               ),

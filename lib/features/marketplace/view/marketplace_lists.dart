@@ -6,6 +6,7 @@ import 'package:job_market/features/jobs/view/job_details.dart';
 import 'package:job_market/features/marketplace/viewmodels/marketplace_viewmodel.dart';
 import 'package:job_market/features/marketplace/view/recent_job_card.dart';
 import 'package:job_market/features/jobs/view/featured_job_card.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 // =========================================================
 // 1. FEATURED JOBS LIST (Newly Listed Jobs)
@@ -22,7 +23,7 @@ class FeaturedJobsList extends ConsumerWidget {
       loading: () => const Center(
         child: Padding(
           padding: EdgeInsets.all(20.0),
-          child: CircularProgressIndicator(color: Color(0xFF10C971)),
+          child: CircularProgressIndicator(color: AppColors.primaryGreen),
         ),
       ),
       error: (error, stack) => Center(child: Text('Error: $error')),
@@ -86,7 +87,7 @@ class RecentJobsList extends ConsumerWidget {
       loading: () => const Center(
         child: Padding(
           padding: EdgeInsets.all(20.0),
-          child: CircularProgressIndicator(color: Color(0xFF10C971)),
+          child: CircularProgressIndicator(color: AppColors.primaryGreen),
         ),
       ),
       error: (error, stack) => Center(child: Text('Error: $error')),

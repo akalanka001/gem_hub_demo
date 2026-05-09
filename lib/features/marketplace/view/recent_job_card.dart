@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 class RecentJobCard extends StatelessWidget {
   final String title;
@@ -24,7 +25,7 @@ class RecentJobCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: isDark
-            ? const Color(0xFF1F2937)
+            ? AppColors.darkSurface
             : Colors.white, // Dynamic Background
         borderRadius: BorderRadius.circular(20),
         boxShadow: isDark
@@ -44,7 +45,7 @@ class RecentJobCard extends StatelessWidget {
             width: 56,
             height: 56,
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF374151) : Colors.grey[50],
+              color: isDark ? AppColors.darkSurfaceAlt : Colors.grey[50],
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: isDark
@@ -72,7 +73,7 @@ class RecentJobCard extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: isDark
                               ? Colors.white
-                              : const Color(0xFF111827),
+                              : AppColors.darkBackground,
                         ),
                       ),
                     ),
@@ -81,7 +82,7 @@ class RecentJobCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF10C971),
+                        color: AppColors.primaryGreen,
                       ),
                     ),
                   ],
@@ -106,8 +107,8 @@ class RecentJobCard extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         color: isDark
-                            ? const Color(0xFF374151)
-                            : const Color(0xFFF3F4F6),
+                            ? AppColors.darkSurfaceAlt
+                            : AppColors.lightBackgroundGrey,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(

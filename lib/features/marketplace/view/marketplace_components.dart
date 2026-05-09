@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 
 class MarketplaceSearchBar extends StatelessWidget {
@@ -23,7 +24,7 @@ class MarketplaceSearchBar extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF1F2937) : Colors.white,
+                color: isDark ? AppColors.darkSurface : Colors.white,
                 borderRadius: BorderRadius.circular(24),
                 boxShadow: isDark
                     ? []
@@ -57,7 +58,7 @@ class MarketplaceSearchBar extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(14),
             decoration: const BoxDecoration(
-              color: Color(0xFF10C971),
+              color: AppColors.primaryGreen,
               shape: BoxShape.circle,
             ),
             child: const Icon(Icons.tune, color: Colors.white),
@@ -121,14 +122,14 @@ class _MarketplaceCategoriesState extends State<MarketplaceCategories> {
                   ),
                   decoration: BoxDecoration(
                     color: isSelected
-                        ? const Color(0xFF10C971)
-                        : (isDark ? const Color(0xFF1F2937) : Colors.white),
+                        ? AppColors.primaryGreen
+                        : (isDark ? AppColors.darkSurface : Colors.white),
                     borderRadius: BorderRadius.circular(20),
                     border: isSelected
                         ? null
                         : Border.all(
                             color: isDark
-                                ? const Color(0xFF374151)
+                                ? AppColors.darkSurfaceAlt
                                 : Colors.grey.withOpacity(0.3),
                           ),
                   ),
@@ -178,7 +179,7 @@ class SectionHeader extends StatelessWidget {
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF111827),
+              color: isDark ? Colors.white : AppColors.darkBackground,
             ),
           ),
           if (actionText != null)
@@ -187,7 +188,7 @@ class SectionHeader extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF10C971),
+                color: AppColors.primaryGreen,
               ),
             ),
           if (icon != null)

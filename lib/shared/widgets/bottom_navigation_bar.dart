@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 class AppBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -16,10 +17,10 @@ class AppBottomNavigationBar extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF111827) : Colors.white,
+        color: isDark ? AppColors.darkBackground : Colors.white,
         border: Border(
           top: BorderSide(
-            color: isDark ? const Color(0xFF1F2937) : const Color(0xFFE5E7EB),
+            color: isDark ? AppColors.darkSurface : AppColors.lightBorder,
             width: 1,
           ),
         ),
@@ -108,10 +109,10 @@ class _NavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isSelected = index == currentIndex;
-    const selectedColor = Color(0xFF10C971);
+    const selectedColor = AppColors.primaryGreen;
     final unselectedColor = isDark
-        ? const Color(0xFF6B7280)
-        : const Color(0xFF9CA3AF);
+        ? AppColors.greyText
+        : AppColors.greyTextMutedLight;
 
     return GestureDetector(
       onTap: () => onTap(index),

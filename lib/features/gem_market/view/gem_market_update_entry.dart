@@ -1,16 +1,17 @@
+import 'package:job_market/core/constants/app_colors.dart';
 // import 'package:flutter/material.dart';
 // import 'package:job_market/data/models/gem_market/gem_model.dart';
 // import 'package:job_market/core/enums/gem_type.dart';
 
 // // ─── Light theme tokens ────────────────────────────────────────────────────────
 // class _T {
-//   static const bg = Color(0xFFF5F7FA);
+//   static const bg = AppColors.lightBackgroundAlt;
 //   static const card = Colors.white;
-//   static const border = Color(0xFFE5E7EB);
-//   static const accent = Color(0xFF10C971);
-//   static const accentLight = Color(0xFFDCFCE7);
-//   static const text = Color(0xFF111827);
-//   static const subText = Color(0xFF6B7280);
+//   static const border = AppColors.lightBorder;
+//   static const accent = AppColors.primaryGreen;
+//   static const accentLight = AppColors.accentGreenLight;
+//   static const text = AppColors.darkBackground;
+//   static const subText = AppColors.greyText;
 // }
 
 // class UpdateGemScreen extends StatefulWidget {

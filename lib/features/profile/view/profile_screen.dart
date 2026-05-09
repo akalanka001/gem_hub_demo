@@ -4,6 +4,7 @@ import 'package:job_market/data/models/auth/auth_state.dart';
 import 'package:job_market/features/auth/provider/session_provider.dart';
 import 'package:job_market/features/auth/viewmodel/auth_viewmodel.dart';
 import 'package:job_market/features/inventory/provider/inventory_provider.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -14,10 +15,10 @@ class ProfileScreen extends ConsumerWidget {
 
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bgColor = isDark
-        ? const Color(0xFF0F172A)
-        : const Color(0xFFF8FAFC);
-    final Color textColor = isDark ? Colors.white : const Color(0xFF1E293B);
-    final Color cardColor = isDark ? const Color(0xFF1E293B) : Colors.white;
+        ? AppColors.darkBackgroundAlt
+        : AppColors.lightBackgroundSoft;
+    final Color textColor = isDark ? Colors.white : AppColors.textDarkAlt;
+    final Color cardColor = isDark ? AppColors.textDarkAlt : Colors.white;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -231,7 +232,7 @@ class ProfileScreen extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(vertical: 22),
           decoration: BoxDecoration(
             color: Theme.of(ref.context).brightness == Brightness.dark 
-                ? const Color(0xFF1E293B) 
+                ? AppColors.textDarkAlt 
                 : Colors.white,
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
@@ -380,7 +381,7 @@ class ProfileScreen extends ConsumerWidget {
         ),
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 15),
-          side: const BorderSide(color: Color(0xFFFFEBEE)),
+          side: const BorderSide(color: AppColors.redSoft),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),

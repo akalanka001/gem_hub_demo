@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:job_market/data/models/gem_market/gem_model.dart';
 import 'package:job_market/features/gem_market/view/certificate_view_screen.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 // Shared styling tokens for the detail screen components
 class GemDetailTheme {
-  static const bgSection = Color(0xFFF9FAFB);
-  static const border = Color(0xFFE5E7EB);
-  static const accent = Color(0xFF10C971);
-  static const accentLight = Color(0xFFDCFCE7);
-  static const text = Color(0xFF111827);
-  static const subText = Color(0xFF6B7280);
-  static const sectionDivider = Color(0xFFE5E7EB);
+  static const bgSection = AppColors.lightSurface;
+  static const border = AppColors.lightBorder;
+  static const accent = AppColors.primaryGreen;
+  static const accentLight = AppColors.accentGreenLight;
+  static const text = AppColors.darkBackground;
+  static const subText = AppColors.greyText;
+  static const sectionDivider = AppColors.lightBorder;
 
   static String formatPrice(double? v) {
     if (v == null) return '0.00';
@@ -195,7 +196,7 @@ class GemTitleSection extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF111827),
+                    color: AppColors.darkBackground,
                     letterSpacing: -0.6,
                   ),
                   maxLines: 2,
@@ -208,7 +209,7 @@ class GemTitleSection extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w800,
-                  color: Color(0xFF22C55E),
+                  color: AppColors.successGreen,
                   letterSpacing: -0.3,
                 ),
               ),
@@ -458,7 +459,7 @@ class GemLocationSection extends StatelessWidget {
               height: 150,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: const Color(0xFFE8F0FE),
+                color: AppColors.blueSky,
                 border: Border.all(color: GemDetailTheme.border),
                 borderRadius: BorderRadius.circular(14),
               ),
@@ -470,7 +471,7 @@ class GemLocationSection extends StatelessWidget {
                     width: double.infinity,
                     height: double.infinity,
                     errorBuilder: (_, __, ___) => Container(
-                      color: const Color(0xFFE5EEFF),
+                      color: AppColors.bluePale,
                       child: const Center(
                         child: Icon(Icons.map_outlined, size: 48, color: GemDetailTheme.accent),
                       ),
@@ -550,7 +551,7 @@ class GemBottomActionBar extends StatelessWidget {
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: isFavourite ? const Color(0xFFFEE2E2) : const Color(0xFFF3F4F6),
+                color: isFavourite ? AppColors.redPale : AppColors.lightBackgroundGrey,
                 shape: BoxShape.circle,
               ),
               child: Icon(

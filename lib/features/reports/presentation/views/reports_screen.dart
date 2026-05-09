@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:job_market/data/models/inventory/gem_filter.dart';
 import 'package:job_market/data/models/inventory/gemstone_model.dart';
 import 'package:job_market/features/reports/presentation/view_models/report_view_model.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 class ReportsScreen extends ConsumerStatefulWidget {
   const ReportsScreen({super.key});
@@ -69,7 +70,7 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E293B),
+        color: AppColors.textDarkAlt,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 // 👇 Screens & ViewModels
 import 'package:job_market/features/auth/provider/session_provider.dart';
@@ -21,8 +22,7 @@ class JobMarketplaceScreen extends ConsumerStatefulWidget {
 }
 
 class _JobMarketplaceScreenState extends ConsumerState<JobMarketplaceScreen> {
-  final Color primaryGreen = const Color(0xFF10C971);
-  final TextEditingController _searchController = TextEditingController();
+    final TextEditingController _searchController = TextEditingController();
 
   @override
   void dispose() {
@@ -38,8 +38,8 @@ class _JobMarketplaceScreenState extends ConsumerState<JobMarketplaceScreen> {
 
     return Scaffold(
       backgroundColor: isDark
-          ? const Color(0xFF111827)
-          : const Color(0xFFF5F7FA),
+          ? AppColors.darkBackground
+          : AppColors.lightBackgroundAlt,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +90,7 @@ class _JobMarketplaceScreenState extends ConsumerState<JobMarketplaceScreen> {
             context.go('/login');
           }
         },
-        backgroundColor: primaryGreen,
+        backgroundColor: AppColors.primaryGreen,
         child: const Icon(Icons.add, color: Colors.white, size: 32),
       ),
     );

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 
 class CvViewerScreen extends StatelessWidget {
   final String cvPath;
@@ -17,7 +18,7 @@ class CvViewerScreen extends StatelessWidget {
     bool isNetworkPdf = cvPath.startsWith('http://') || cvPath.startsWith('https://');
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F7FA),
+      backgroundColor: AppColors.lightBackgroundAlt,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 1,

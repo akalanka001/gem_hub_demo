@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:job_market/core/constants/app_colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -18,7 +19,6 @@ class AddNewGemstoneScreen extends ConsumerStatefulWidget {
 
 class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
   final _formKey = GlobalKey<FormState>();
-  final Color primaryYellow = const Color(0xFFFDB913);
   final ImagePicker _picker = ImagePicker();
 
   bool _isSold = false;
@@ -253,11 +253,11 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
-    Color bgColor = isDark ? const Color(0xFF111827) : const Color(0xFFF8F9FA);
-    Color textColor = isDark ? Colors.white : const Color(0xFF111827);
+    Color bgColor = isDark ? AppColors.darkBackground : AppColors.lightBackground;
+    Color textColor = isDark ? Colors.white : AppColors.darkBackground;
     Color dividerColor = isDark
-        ? const Color(0xFF374151)
-        : const Color(0xFFE5E7EB);
+        ? AppColors.darkSurfaceAlt
+        : AppColors.lightBorder;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -266,7 +266,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.close, color: primaryYellow, size: 28),
+          icon: Icon(Icons.close, color: AppColors.primaryYellow, size: 28),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
@@ -293,7 +293,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
                     _buildSectionHeader(
                       Icons.camera_alt_outlined,
                       'GEMSTONE PHOTOS',
-                      primaryYellow,
+                      AppColors.primaryYellow,
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -324,7 +324,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
                     _buildSectionHeader(
                       Icons.calendar_month,
                       'RECORD DATE',
-                      primaryYellow,
+                      AppColors.primaryYellow,
                     ),
                     const SizedBox(height: 16),
                     _buildDatePickerTextField(),
@@ -337,7 +337,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
                     _buildSectionHeader(
                       Icons.diamond_outlined,
                       'STONE DETAILS',
-                      primaryYellow,
+                      AppColors.primaryYellow,
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -366,7 +366,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
                     _buildSectionHeader(
                       Icons.shopping_bag_outlined,
                       'ACQUISITION METRICS',
-                      primaryYellow,
+                      AppColors.primaryYellow,
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -400,7 +400,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
                     _buildSectionHeader(
                       Icons.auto_awesome,
                       'VALUE ADDITION COSTS',
-                      primaryYellow,
+                      AppColors.primaryYellow,
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -447,7 +447,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
                     _buildSectionHeader(
                       Icons.precision_manufacturing_outlined,
                       'FINAL SPECIFICATIONS',
-                      primaryYellow,
+                      AppColors.primaryYellow,
                     ),
                     const SizedBox(height: 16),
                     _buildTextField(
@@ -472,7 +472,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
                     _buildSectionHeader(
                       Icons.query_stats,
                       'FINANCIAL SUMMARY',
-                      primaryYellow,
+                      AppColors.primaryYellow,
                     ),
                     const SizedBox(height: 16),
                     _buildTextField(
@@ -529,7 +529,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
                           style: TextStyle(fontSize: 11, color: Colors.grey),
                         ),
                         value: _isSold,
-                        activeColor: primaryYellow,
+                        activeColor: AppColors.primaryYellow,
                         onChanged: (bool value) =>
                             setState(() => _isSold = value),
                       ),
@@ -602,7 +602,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
                 ),
               ),
             ),
-            _buildBottomAction(bgColor, primaryYellow),
+            _buildBottomAction(bgColor, AppColors.primaryYellow),
           ],
         ),
       ),
@@ -662,7 +662,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFFE5E7EB)),
+              border: Border.all(color: AppColors.lightBorder),
             ),
             child: image != null
                 ? ClipRRect(
@@ -672,7 +672,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
                 : Center(
                     child: Icon(
                       Icons.add_a_photo_outlined,
-                      color: primaryYellow,
+                      color: AppColors.primaryYellow,
                       size: 30,
                     ),
                   ),
@@ -730,7 +730,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
             fillColor: Colors.white,
             hintText: hint,
             prefixIcon: prefixIcon != null
-                ? Icon(prefixIcon, color: primaryYellow, size: 18)
+                ? Icon(prefixIcon, color: AppColors.primaryYellow, size: 18)
                 : null,
             suffixText: suffixText,
             contentPadding: const EdgeInsets.symmetric(
@@ -739,11 +739,11 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(color: Color(0xFFE5E7EB)),
+              borderSide: const BorderSide(color: AppColors.lightBorder),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: primaryYellow, width: 2),
+              borderSide: BorderSide(color: AppColors.primaryYellow, width: 2),
             ),
           ),
         ),
@@ -783,10 +783,10 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
-            suffixIcon: Icon(Icons.event_note, color: primaryYellow),
+            suffixIcon: Icon(Icons.event_note, color: AppColors.primaryYellow),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(color: Color(0xFFE5E7EB)),
+              borderSide: const BorderSide(color: AppColors.lightBorder),
             ),
           ),
         ),
@@ -832,14 +832,14 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
       children: [
         Checkbox(
           value: _isRough,
-          activeColor: primaryYellow,
+          activeColor: AppColors.primaryYellow,
           onChanged: (val) => setState(() => _isRough = val!),
         ),
         Text('Rough', style: TextStyle(color: textColor)),
         const SizedBox(width: 32),
         Checkbox(
           value: _isCut,
-          activeColor: primaryYellow,
+          activeColor: AppColors.primaryYellow,
           onChanged: (val) => setState(() => _isCut = val!),
         ),
         Text('Cut', style: TextStyle(color: textColor)),
@@ -852,7 +852,7 @@ class _AddNewGemstoneScreenState extends ConsumerState<AddNewGemstoneScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
         color: bgColor,
-        border: const Border(top: BorderSide(color: Color(0xFFE5E7EB))),
+        border: const Border(top: BorderSide(color: AppColors.lightBorder)),
       ),
       child: SafeArea(
         child: SizedBox(
