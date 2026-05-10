@@ -7,7 +7,7 @@ import 'package:job_market/core/enums/gem_status.dart';
 import 'package:job_market/data/models/gem_market/gem_model.dart';
 import 'package:job_market/features/gem_market/viewmodel/gem_marketplace_viewmodel.dart';
 import 'gem_marketplace_widgets.dart';
-import 'gem_add_entry.dart';
+import 'gem_market_add_entry.dart';
 import 'package:job_market/core/constants/app_colors.dart';
 
 // ─── Category model ────────────────────────────────────────────────────────────

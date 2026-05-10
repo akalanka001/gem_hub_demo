@@ -5,16 +5,17 @@ import 'package:job_market/features/auth/provider/session_provider.dart';
 import 'package:job_market/features/gem_market/provider/gem_list_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'gem_add_viewmodel.g.dart';
+part 'gem_update_viewmodel.g.dart';
 
 @riverpod
-class GemAddViewModel extends _$GemAddViewModel {
+class GemUpdateViewModel extends _$GemUpdateViewModel {
   @override
   bool build() {
     return false;
   }
 
-  Future<bool> createGem({
+  Future<bool> updateGem({
+    required String gemId,
     required String name,
     double? carat,
     double? price,
@@ -40,6 +41,7 @@ class GemAddViewModel extends _$GemAddViewModel {
         'anonymous';
 
     final gem = Gem(
+      gemId: gemId,
       owner: owner,
       name: name,
       carat: carat,
@@ -49,14 +51,13 @@ class GemAddViewModel extends _$GemAddViewModel {
       sellerPhone: sellerPhone,
       variety: variety,
       color: color,
-      imageUrl: imageUrl ??
-          'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=700',
-      certificateUrl: certificateUrl ?? 'https://example.com/dummy-certificate.pdf',
-      status: GemStatus.PENDING,
+      imageUrl: imageUrl,
+      certificateUrl: certificateUrl,
+      status: GemStatus.PENDING, // Might want to keep original status or reset to pending
     );
 
     try {
-      await ref.read(gemRepositoryProvider).createGem(gem);
+      await ref.read(gemRepositoryProvider).updateGem(gem);
       ref.invalidate(gemListProvider);
       return true;
     } catch (e) {
