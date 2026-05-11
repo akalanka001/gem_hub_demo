@@ -2,18 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-// Screens
+import 'package:job_market/data/models/gem_market/gem_model.dart';
+import 'package:job_market/core/router/router_notifier.dart';
+
+// View Imports
 import 'package:job_market/features/navigation/view/main_navigation.dart';
 import 'package:job_market/features/marketplace/view/job_market.dart';
 import 'package:job_market/features/jobs/view/PostNewJob/post_new_job.dart';
 import 'package:job_market/features/gem_market/view/gem_market_screen.dart';
+import 'package:job_market/features/gem_market/view/gem_listing_screen.dart';
+import 'package:job_market/features/gem_market/view/gem_market_add_entry.dart';
 import 'package:job_market/features/auth/view/admin_screen.dart';
 import 'package:job_market/features/auth/view/login_screen.dart';
 import 'package:job_market/features/auth/view/sign_up_screen.dart';
 import 'package:job_market/features/inventory/view/inventory_screen_view.dart';
 import 'package:job_market/features/home/view/home_screen.dart';
 import 'package:job_market/features/profile/view/profile_screen.dart';
-import 'package:job_market/core/router/router_notifier.dart';
 
 part 'app_router.g.dart';
 
@@ -26,11 +30,9 @@ GoRouter router(Ref ref) {
 
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/gems',
-    refreshListenable:
-        notifier, // 🔄 This tells GoRouter to refresh on auth changes
-    redirect: notifier.redirect, // 🛡️ This runs the auth logic
-
+    initialLocation: '/home',
+    refreshListenable: notifier,
+    redirect: notifier.redirect,
     routes: [
       GoRoute(
         path: '/login',
@@ -53,37 +55,60 @@ GoRouter router(Ref ref) {
         builder: (context, state, child) => MainNavigation(child: child),
         routes: [
           GoRoute(
-            path: '/jobs',
-            name: 'jobs',
-            builder: (context, state) => const JobMarketplaceScreen(),
-          ),
-          GoRoute(
-            path: '/jobs/new',
-            name: 'post_job',
-            builder: (context, state) => const PostJobScreen(),
+            path: '/home',
+            name: 'home',
+            builder: (context, state) => const HomeScreen(),
           ),
           GoRoute(
             path: '/gems',
             name: 'gems',
             builder: (context, state) => const GemMarketPlaceScreen(),
+            routes: [
+              GoRoute(
+                path: 'new',
+                name: 'add_gem',
+                builder: (context, state) => const AddGemScreen(),
+              ),
+            ],
           ),
           GoRoute(
-            path: '/profile',
-            name: 'profile',
-            builder: (context, state) => const ProfileScreen(),
+            path: '/jobs',
+            name: 'jobs',
+            builder: (context, state) => const JobMarketplaceScreen(),
+            routes: [
+              GoRoute(
+                path: 'new',
+                name: 'post_job',
+                builder: (context, state) => const PostJobScreen(),
+              ),
+            ],
           ),
           GoRoute(
             path: '/inventory',
             name: 'inventory',
             builder: (context, state) => const InventoryScreen(),
           ),
-
           GoRoute(
-            path: '/home',
-            name: 'home',
-            builder: (context, state) => const HomeScreen(),
+            path: '/profile',
+            name: 'profile',
+            builder: (context, state) => const ProfileScreen(),
           ),
         ],
+      ),
+
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/gem-details/:id',
+        name: 'gem_details',
+        builder: (context, state) {
+          final gem = state.extra as Gem?;
+          if (gem != null) {
+            return GemListingDetailScreen(gem: gem);
+          }
+          return const Scaffold(
+            body: Center(child: Text("Gem data not found")),
+          );
+        },
       ),
     ],
   );

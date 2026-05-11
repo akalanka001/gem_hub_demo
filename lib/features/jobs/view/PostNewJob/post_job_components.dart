@@ -313,8 +313,7 @@ class PostJobBottomAction extends StatelessWidget {
 class PostJobLocationPicker extends StatefulWidget {
   final Function(String) onPlaceSelected;
 
-  const PostJobLocationPicker({Key? key, required this.onPlaceSelected})
-    : super(key: key);
+  const PostJobLocationPicker({super.key, required this.onPlaceSelected});
 
   @override
   State<PostJobLocationPicker> createState() => _PostJobLocationPickerState();

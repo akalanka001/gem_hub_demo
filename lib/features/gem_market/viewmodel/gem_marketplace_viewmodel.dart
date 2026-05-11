@@ -12,9 +12,9 @@ class GemMarketplaceViewModel extends _$GemMarketplaceViewModel {
 
   @override
   Future<List<Gem>> build() async {
-    // Watch the raw data source. 
+    // Watch the raw data source.
     // When rawGemListProvider gets data, this build method re-runs.
-    final gemsAsync = ref.watch(gemListProvider);
+    final gemsAsync = ref.watch(approvedGemsProvider);
 
     return gemsAsync.maybeWhen(
       data: (gems) {
@@ -29,8 +29,7 @@ class GemMarketplaceViewModel extends _$GemMarketplaceViewModel {
     if (_searchQuery.isEmpty) return gems;
     return gems.where((gem) {
       final query = _searchQuery.toLowerCase();
-      return gem.name.toLowerCase().contains(query) ||
-             (gem.description?.toLowerCase().contains(query) ?? false);
+      return gem.name.toLowerCase().contains(query);
     }).toList();
   }
 
@@ -58,7 +57,7 @@ class GemMarketplaceViewModel extends _$GemMarketplaceViewModel {
       return false;
     }
   }
-  
+
   // updateGem and deleteGem follow the same logic as addGem
   void updateType(dynamic type) {}
 }
